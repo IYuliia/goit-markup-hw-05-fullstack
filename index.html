@@ -59,7 +59,9 @@
             EFFECTIVE SOLUTIONS FOR <br />
             YOUR BUSINESS
           </h1>
-          <button type="button" class="hero-btn">Request our service</button>
+          <button type="button" class="hero-btn" data-modal-open>
+            Request our service
+          </button>
         </div>
       </section>
 
@@ -137,6 +139,7 @@
                 width="370"
                 height="294"
               />
+              <p class="what-we-do-label">DESKTOP APPS</p>
             </li>
             <li class="item">
               <img
@@ -145,6 +148,7 @@
                 width="370"
                 height="294"
               />
+              <p class="what-we-do-label">MOBILE APPS</p>
             </li>
             <li class="item">
               <img
@@ -153,6 +157,7 @@
                 width="370"
                 height="294"
               />
+              <p class="what-we-do-label">DESIGN SOLUTIONS</p>
             </li>
           </ul>
         </div>
@@ -416,5 +421,15 @@
         </div>
       </div>
     </footer>
+    <div class="backdrop is-hidden" data-modal>
+      <div class="modal">
+        <button type="button" class="modal-close" data-modal-close>
+          <svg class="icon-close" width="11" height="11">
+            <use href="./images/icons.svg#icon-close"></use>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <script src="./js/modal.js"></script>
   </body>
 </html>

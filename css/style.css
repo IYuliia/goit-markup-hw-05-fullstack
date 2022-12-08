@@ -22,6 +22,17 @@ p {
 .header-link.current {
   color: var(--highlighting-color);
 }
+.header-link.current::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  display: block;
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  background-color: var(--highlighting-color);
+}
 
 .link {
   text-decoration: none;
@@ -77,6 +88,7 @@ p {
 }
 
 .header-link {
+  position: relative;
   display: block;
   padding-top: 32px;
   padding-bottom: 32px;
@@ -87,6 +99,7 @@ p {
   letter-spacing: 0.02em;
 
   color: inherit;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .header-link:hover,
@@ -116,6 +129,8 @@ p {
   letter-spacing: 0.02em;
 
   color: var(--secondary-text-color);
+
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .header-email:hover,
@@ -189,6 +204,8 @@ p {
   min-width: 200px;
   text-align: center;
   border: 1px solid transparent;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .hero-btn:hover,
@@ -246,15 +263,30 @@ p {
 }
 .what-we-do .list {
   display: flex;
+  height: 294px;
 }
 
 .what-we-do .item {
+  position: relative;
   width: 370px;
   margin-right: 30px;
 }
 
 .what-we-do .item:nth-child(3n) {
   margin-right: 0;
+}
+
+.what-we-do-label {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  color: #fff;
+  background-color: rgba(47, 48, 58, 0.8);
+  width: 100%;
+  height: 70px;
+  padding-top: 27px;
+  padding-bottom: 27px;
+  text-align: center;
 }
 
 .section-title {
@@ -330,6 +362,8 @@ p {
   background-repeat: no-repeat;
   background-size: contain;
   padding: 12px;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .soc-link:hover,
@@ -352,6 +386,8 @@ p {
   fill: #afb1b8;
   border: 1px solid #afb1b8;
   border-radius: 4px;
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    border 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .customers-link:not(:last-child) {
@@ -371,6 +407,7 @@ p {
   letter-spacing: 0.03em;
 
   color: #ffffff;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .footer-link {
@@ -380,6 +417,7 @@ p {
   letter-spacing: 0.03em;
 
   color: rgba(255, 255, 255, 0.6);
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .address-link:hover,
@@ -434,6 +472,7 @@ address {
   background-size: contain;
   padding: 12px;
   margin-right: 10px;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .footer-soc-link:not(:last-child) {
@@ -442,8 +481,53 @@ address {
 
 .footer-soc-link:hover,
 .footer-soc-link:focus {
-  fill: #fff;
   background-color: #2196f3;
+}
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 528px;
+  min-height: 581px;
+  background-color: #fff;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
+    0px 2px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.backdrop.is-hidden .modal {
+  transform: translate(-50%, -50%) scale(0);
+}
+
+.modal-close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 30px;
+  height: 30px;
+  fill: black;
+  background-color: transparent;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
 }
 
 .filter-btn {
@@ -460,6 +544,9 @@ address {
   border: 1px solid transparent;
   border-radius: 4px;
   padding: 6px 22px;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .filter-btn:hover,
@@ -508,6 +595,34 @@ address {
   border-left: 1px solid var(--secondary-background-color);
   border-bottom: 1px solid var(--secondary-background-color);
 }
+.our-products-overlay {
+  position: relative;
+  overflow: hidden;
+}
+
+.overlay-text {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+
+  top: 0;
+
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.56;
+  padding-right: 24px;
+  padding-left: 24px;
+  padding-top: 63px;
+  color: #ffffff;
+  background-color: rgba(33, 150, 243, 0.9);
+
+  transform: translateY(100%);
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.our-products .item:hover .overlay-text {
+  transform: translateY(0);
+}
 
 .our-products.list {
   display: flex;
@@ -518,6 +633,7 @@ address {
   width: 370px;
   margin-right: 30px;
   margin-bottom: 30px;
+  transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .our-products .item:hover,
